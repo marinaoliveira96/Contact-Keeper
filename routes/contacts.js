@@ -25,9 +25,37 @@ router.get('/', auth, async (req, res) => {
 // @routes  POST api/auth
 // @desc    Add new contact
 // @access  Purivate
-router.post('/', (req, res) => {
-  res.send('add contact');
-});
+router.post(
+  '/',
+  [auth, [check('name', 'Name is required').not().isEmpty()]],
+
+  async (req, res) => {
+    const erros = validationResult(req);
+    if (!erros.isEmpty()) {
+      return res.status(400).json({ erros: erros.array() });
+    }
+
+    const { name, email, phone, type } = req.body;
+
+    try {
+      const newConctact = new Contact({
+        name,
+        email,
+        phone,
+        type,
+        user: req.user.id,
+        //esse user temos acesso por causa do auth middleware
+      });
+      //salva no banco de dados
+      const contact = await newConctact.save();
+
+      res.json(contact);
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
 
 // @routes  PUT api/contacts/:id
 // @desc    Update contact
