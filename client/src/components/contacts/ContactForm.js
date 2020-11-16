@@ -65,6 +65,7 @@ const ContactForm = () => {
         name="type"
         value="professional"
         checked={type === 'professional'}
+        onChange={onChange}
       />
       Professional{' '}
       <div>
@@ -72,6 +73,7 @@ const ContactForm = () => {
           type="submit"
           value="Add Contact"
           className="btn btn-primary btn-block"
+          onChange={onChange}
         />
       </div>
     </form>

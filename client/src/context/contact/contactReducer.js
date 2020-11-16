@@ -15,6 +15,14 @@ export default (state, action) => {
         ...state,
         contacts: [...state.contacts, action.payload],
       };
+    case DELETE_CONTACT:
+      return {
+        ...state,
+        //filtrar todos e trazer só os que n são iguais o id q vc ta deletando
+        contacts: state.contacts.filter(
+          (contact) => contact.id !== action.payload
+        ),
+      };
     default:
       return state;
   }
