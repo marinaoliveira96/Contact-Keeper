@@ -25,17 +25,17 @@ const ContactItem = ({ contact }) => {
           }
         >
           {type.charAt(0).toUpperCase() + type.slice(1)}
-        </span>{' '}
+        </span>
       </h3>
       <ul className="list">
         {email && (
           <li>
-            <i className="fas fa-envelope-open"></i> {email}
+            <i className="fas fa-envelope-open" /> {email}
           </li>
         )}
         {phone && (
           <li>
-            <i className="fas fa-phone"></i> {phone}
+            <i className="fas fa-phone" /> {phone}
           </li>
         )}
       </ul>
@@ -54,7 +54,7 @@ const ContactItem = ({ contact }) => {
   );
 };
 
-ContactItem.protoTypes = {
+ContactItem.propTypes = {
   contact: PropTypes.object.isRequired,
 };
 
