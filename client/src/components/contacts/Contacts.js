@@ -17,14 +17,14 @@ const Contacts = () => {
         {filtered !== null
           ? filtered.map((contact) => (
               //se tiver algo no filtro mostra o que tiver
-              <CSSTransition key={contact.id} timeout={500} classNames="item">
+              <CSSTransition key={contact._id} timeout={500} classNames="item">
                 <ContactItem contact={contact} />
               </CSSTransition>
             ))
           : //se n tiver nada no filtro mostra tudo
             contacts.map((contact) => (
-              <CSSTransition key={contact.id} timeout={500} classNames="item">
-                <ContactItem key={contact.id} contact={contact} />
+              <CSSTransition key={contact._id} timeout={500} classNames="item">
+                <ContactItem key={contact._id} contact={contact} />
               </CSSTransition>
             ))}
       </TransitionGroup>
