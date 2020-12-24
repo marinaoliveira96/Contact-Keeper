@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
-const config = require('config');
+require('dotenv').config({ path: '.env' });
+
+const jwtSecret = process.env.JWT_SECRET;
 
 // funcção middleware = vai proteger as rotas privadas
 module.exports = function (req, res, next) {
@@ -13,7 +15,7 @@ module.exports = function (req, res, next) {
   }
 
   try {
-    const decoded = jwt.verify(token, config.get('jwtSecret'));
+    const decoded = jwt.verify(token,  jwtSecret);
 
     req.user = decoded.user;
     next();
